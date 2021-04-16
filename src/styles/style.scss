@@ -1,5 +1,19 @@
 $img_path: '../../img/';
 $main_color: #FF6B0F;
+$wrap: 10px;
+$tablet: 768px;
+$desktop: 1024px;
+@mixin desktop {
+    @media screen and (min-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: $tablet) {
+        @content;
+    }
+}
 
 .meeter {
     position: relative;
@@ -10,47 +24,132 @@ $main_color: #FF6B0F;
     background: url('#{$img_path}meeter3.jpg') center;
     background-size: cover;
     background-position: top;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    .meeter__logo {
-        width: 100px;
-        height: 100px;
-        background: url('#{$img_path}log.png');
-        background-position-x: right;
-        background-position-y: to;
-        background-size: 100%;
-    }
-    h1 {
-        font-family: 'Bitter';
-        color: black;
-        text-align: center;
-        font-size: calc(1.4rem + 1.23vw);
-    }
-    .meeter__buttons {
+    &__body {
+        height: 100%;
+        width: 100%;
+        padding: 20px $wrap;
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    &__logo {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+    &__control {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 200px;
+        height: 100px;
         margin: 100px 0;
-        button {
-            background: linear-gradient(135deg, $main_color 50%, black 50%);
-            background-size: 250%;
-            background-position: left;
-            margin: 5px;
-            font-family: 'Bitter';
-            font-size: 20px;
-            color: white;
-            padding: 5px 0;
-            border-radius: 20px;
-            border: none;
-            transition: background-position 0.3s linear;
-            &:hover {
-                background-position: right;
-            }
+    }
+    &__button {
+        background: linear-gradient(135deg, $main_color 50%, black 50%);
+        background-size: 250%;
+        background-position: left;
+        margin: 5px;
+        font-family: 'Roboto_slab';
+        font-size: 20px;
+        color: white;
+        padding: 5px 0;
+        border-radius: 10px;
+        border: 1px solid black;
+        transition: 0.2s linear;
+        &:hover {
+            background-position: right;
+            border: 1px solid $main_color;
+            border-color: $main_color;
         }
     }
+}
+
+.inform {
+    background: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    &__row {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    &__item-wrap {
+        position: relative;
+        margin: 5px 0;
+        width: 100%;
+        height: 280px;
+        color: $main_color;
+        &--1 {
+            background: url('#{$img_path}1.jpg') center;
+            background-size: cover;
+        }
+        &--2 {
+            background: url('#{$img_path}2.jpg') center;
+            background-size: cover;
+        }
+        &--3 {
+            background: url('#{$img_path}3.jpg') center;
+            background-size: cover;
+        }
+        &--4 {
+            background: url('#{$img_path}4.jpg') center;
+            background-size: cover;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        background: $main_color;
+        width: 100%;
+        height: 10%;
+        &--top {
+            top: 0;
+        }
+        &--bottom {
+            bottom: 0;
+        }
+    }
+}
+
+.text-block {
+    background: white;
+    text-align: center;
+    &__title {
+        position: relative;
+        margin-bottom: 30px;
+        display: inline-block;
+        &::after {
+            display: block;
+            margin-top: 2px;
+            width: 100%;
+            content: '';
+            position: absolute;
+            border-bottom: 5px solid $main_color;
+        }
+    }
+    &__wrapper {
+        padding: 50px 10px;
+        max-width: 1024px;
+        margin: auto;
+    }
+    &__text {
+        font-family: 'Bitter';
+        font-size: 18px;
+    }
+}
+
+.title {
+    font-family: 'Bitter';
+    color: black;
+    text-align: center;
+    font-size: calc(1.4rem + 1.23vw);
 }
 
 @media (min-width: 1920px) {
@@ -59,14 +158,20 @@ $main_color: #FF6B0F;
     }
 }
 
-.slider {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background: gray;
+@media screen and (min-width: $tablet) {
+    .inform {
+        &__item-wrap {
+            width: 50%;
+        }
+    }
 }
 
 @font-face {
     font-family: 'Bitter';
     src: url('../../fonts/Bitter-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto_slab';
+    src: url('../../fonts/RobotoSlab-Light.ttf');
 }
