@@ -1,17 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300;400&family=Inter:wght@500&display=swap');
+
 $img_path: '../../img/';
 $main_color: #FF6B0F;
-$wrap: 10px;
-$tablet: 768px;
-$desktop: 1024px;
-@mixin desktop {
-    @media screen and (min-width: $desktop) {
-        @content;
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
+}
+
+@media (min-width: 768px){
+    .container {
+        padding: 0 100px;
     }
 }
 
-@mixin tablet {
-    @media screen and (min-width: $tablet) {
-        @content;
+.title {
+    font-family: 'Bitter';
+    font-weight: 400;
+    color: black;
+    text-align: center;
+    font-size: 30px;
+}
+
+.btn {
+    background: linear-gradient(135deg, $main_color 50%, black 50%);
+    background-size: 250%;
+    background-position: left;
+    font-family: 'Inter';
+    font-weight: 500;
+    transition: 0.2s linear;
+    color: white;
+        padding: 10px 0;
+        border-radius: 2px;
+        border: none;
+    &:hover {
+        background-position: right;
     }
 }
 
@@ -22,105 +46,63 @@ $desktop: 1024px;
     max-width: 100%;
     min-height: 500px;
     background: url('#{$img_path}meeter3.jpg') center;
-    background-size: cover;
+    background-size: auto 130%;
     background-position: top;
     &__body {
         height: 100%;
         width: 100%;
-        padding: 20px $wrap;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-    }
-    &__logo {
-        width: 100px;
-        height: 100px;
-        border: 1px solid black;
-    }
-    &__control {
+        padding: 30px 0 50px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 200px;
+        align-items: center;
+    }
+    &__logo {
+        display: block;
+        width: 100px;
         height: 100px;
-        margin: 100px 0;
+        border: 1px solid black;
+        margin: 0 auto;
+    }
+    &__title {
+        margin-top: 5vh;
     }
     &__button {
-        background: linear-gradient(135deg, $main_color 50%, black 50%);
-        background-size: 250%;
-        background-position: left;
-        margin: 5px;
-        font-family: 'Roboto_slab';
+        display: block;
         font-size: 20px;
-        color: white;
-        padding: 5px 0;
-        border-radius: 10px;
-        border: 1px solid black;
-        transition: 0.2s linear;
-        &:hover {
-            background-position: right;
-            border: 1px solid $main_color;
-            border-color: $main_color;
+        margin: 10px 0;
+        width: 250px;
+    }
+}
+
+@media (min-width: 768px) {
+    .meeter {
+        background-size: cover;
+        &__title {
+            font-size: 40px;
+        }
+        &__body {
+            padding: 50px 0 100px;
         }
     }
 }
 
-.inform {
-    background: white;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-
-    &__row {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
-
-    &__item-wrap {
-        position: relative;
-        margin: 5px 0;
-        width: 100%;
-        height: 280px;
-        color: $main_color;
-        &--1 {
-            background: url('#{$img_path}1.jpg') center;
-            background-size: cover;
-        }
-        &--2 {
-            background: url('#{$img_path}2.jpg') center;
-            background-size: cover;
-        }
-        &--3 {
-            background: url('#{$img_path}3.jpg') center;
-            background-size: cover;
-        }
-        &--4 {
-            background: url('#{$img_path}4.jpg') center;
-            background-size: cover;
-        }
-    }
-
-    &__content {
-        position: absolute;
-        background: $main_color;
-        width: 100%;
-        height: 10%;
-        &--top {
-            top: 0;
-        }
-        &--bottom {
-            bottom: 0;
-        }
+@media (min-width: 1024px) {
+    .meeter {
+        height: auto;
+        height: 60vh;
+        
     }
 }
+
+// @media (min-width: 1920px) {
+//     .meeter {
+//         background-size: 100% auto;
+//     }
+// }
 
 .text-block {
     background: white;
-    text-align: center;
     &__title {
         position: relative;
         margin-bottom: 30px;
@@ -141,37 +123,101 @@ $desktop: 1024px;
     }
     &__text {
         font-family: 'Bitter';
+        font-weight: 400;
         font-size: 18px;
     }
 }
 
-.title {
-    font-family: 'Bitter';
-    color: black;
-    text-align: center;
-    font-size: calc(1.4rem + 1.23vw);
-}
-
-@media (min-width: 1920px) {
-    .meeter {
-        background-size: 100% auto;
+.inform {
+    &__inner {
+        max-width: 1024px;
+        min-height: 500px;
+        margin: 0 auto 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 10px;
     }
-}
-
-@media screen and (min-width: $tablet) {
-    .inform {
-        &__item-wrap {
-            width: 50%;
+    &__item {
+        height: auto;
+        position: relative;
+        background-color: $main_color;
+        overflow: hidden;
+        
+        &--big {
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+        &:hover {
+            .inform__img-mask {
+                opacity: 1;
+            }
+            .inform__item-wrapper {
+                transform: translateY(0);
+            }
+            .inform__item-text {
+                opacity: 1;
+            }
         }
     }
+    &__item-wrapper {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        transition: transform 1s;
+        transform: translateY(36%);
+    }
+    &__item-content {
+        position: relative;
+        height: 100%;
+        padding: 20px 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__title {
+        color: white;
+    }
+    &__item-text {
+        color: white;
+        opacity: 0;
+        transition: opacity 1s;
+        // margin-top: 15px;
+        font-family: 'Bitter';
+        font-weight: 400;
+        font-size: 16px;
+    }
+    &__item-button {
+        width: 100px;
+        // margin-top: 15px;
+    }
+    &__img-mask {
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        background-color: rgba(#000, 1);
+        transition: opacity 1s;
+        opacity: 0;
+    }
+    &__item-img {
+        opacity: 0.3;
+        position: relative;
+        object-fit: cover;
+        height: 100%;
+    }
+    &__text-item {
+        padding: 10px 25px;
+        font-size: 16px;
+        font-family: 'Bitter';
+        font-weight: 400;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
-@font-face {
-    font-family: 'Bitter';
-    src: url('../../fonts/Bitter-VariableFont_wght.ttf');
-}
-
-@font-face {
-    font-family: 'Roboto_slab';
-    src: url('../../fonts/RobotoSlab-Light.ttf');
+.footer {
+    height: 100px;
+    background-color: #ff9451;
 }
