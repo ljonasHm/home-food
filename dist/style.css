@@ -1,4 +1,8 @@
 @import url(https://fonts.googleapis.com/css2?family=Bitter:wght@300;400&family=Inter:wght@500&display=swap);
+html, body {
+  position: relative;
+  overflow-x: hidden; }
+
 .container {
   height: 100%;
   width: 100%;
@@ -171,6 +175,49 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+
+.scroll-anim__inner {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0; }
+
+.scroll-anim__item {
+  display: flex;
+  width: 45%;
+  text-align: left;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all 0.5s; }
+  .scroll-anim__item--bellow {
+    margin-top: 200px;
+    text-align: right;
+    transform: translateX(50%); }
+  .scroll-anim__item--active {
+    transform: translateX(0);
+    opacity: 1; }
+
+.scroll-anim__title {
+  text-align: inherit;
+  font-size: 24px;
+  position: relative;
+  padding: 10px 0; }
+  .scroll-anim__title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 40%;
+    left: 0;
+    height: 3px;
+    background-color: #FF6B0F; }
+  .scroll-anim__title--bellow:after {
+    left: auto;
+    right: 0; }
+
+.scroll-anim__text {
+  font-size: 16px;
+  font-family: 'Bitter';
+  font-weight: 400;
+  margin-top: 20px; }
 
 .footer {
   height: 100px;

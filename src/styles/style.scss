@@ -3,6 +3,11 @@
 $img_path: '../../img/';
 $main_color: #FF6B0F;
 
+html, body {
+    position: relative;
+    overflow-x: hidden;
+}
+
 .container {
     height: 100%;
     width: 100%;
@@ -214,6 +219,57 @@ $main_color: #FF6B0F;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+}
+
+.scroll-anim {
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+    }
+    &__item {
+        display: flex;
+        width: 45%;
+        text-align: left;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: all 0.5s;
+        &--bellow {
+            margin-top: 200px;
+            text-align: right;
+            transform: translateX(50%);
+        }
+        &--active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    &__title {
+        text-align: inherit;
+        font-size: 24px;
+        position: relative;
+        padding: 10px 0;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 40%;
+            left: 0;
+            height: 3px;
+            background-color: $main-color;
+        }
+        &--bellow:after {
+            left: auto;
+            right: 0;
+        }
+    }
+    &__text {
+        font-size: 16px;
+        font-family: 'Bitter';
+        font-weight: 400;
+        margin-top: 20px;
     }
 }
 
