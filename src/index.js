@@ -20,7 +20,7 @@ function scrollAnim() {
         if (animItemHeight > window.innerHeight) {
             animItemPoint = window.innerHeight - window.innerHeight / animStart;
         }
-        if ((pageYOffset > animationOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+        if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
             elem.classList.add('scroll-anim__item--active');
         } else {
             elem.classList.remove('scroll-anim__item--active');
